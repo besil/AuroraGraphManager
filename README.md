@@ -29,4 +29,14 @@ g.addEdge(3, 4, 3f);
 g.addEdge(4, 2);                // This edge has weight 1f
 
 g.setNodeAttribute(n0, 4f);     // Change node attribute
+
+if( g.contains(0) )
+  g.deleteNode(0)
+g.contains(0)                   // now false
+
+try {
+  g.getNodeAttribute(23);       // You can't access to non existing nodes
+} catch( NodeNotFound ex ) {
+  ex.printStackTrace();  
+}
 ```
