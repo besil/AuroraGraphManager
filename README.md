@@ -1,7 +1,7 @@
 AuroraGraphManager
 ==================
 
-Aurora Graph Manager part of the software I developed for my MS thesis in Computer Science.
+Aurora Graph Manager is part of the software I developed for my MS thesis in Computer Science.
 The thesis was about community detection in big graphs.
 
 Aurora is an efficient in-memory implementation for directed, undirected, weighted and unweihted graphs, written in Java.
