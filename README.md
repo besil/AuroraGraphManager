@@ -4,7 +4,7 @@ Aurora Graph Manager
 Aurora Graph Manager is part of the software I developed for my MS thesis in Computer Science.
 The thesis was about community detection in big graphs.
 
-Aurora is an efficient in-memory implementation for directed, undirected, weighted and unweihted graphs, written in Java.
+Aurora is an efficient in-memory implementation for directed, undirected, weighted and unweighted graphs, written in Java.
 Most of the performance is given by the fastutil project (http://fastutil.di.unimi.it).
 
 I'm rewriting the code in Java 8, with functional idioms. With the original implementation, we could handle
