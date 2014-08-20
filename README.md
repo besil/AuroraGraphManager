@@ -1,4 +1,4 @@
-AuroraGraphManager
+Aurora Graph Manager
 ==================
 
 Aurora Graph Manager is part of the software I developed for my MS thesis in Computer Science.
