@@ -27,4 +27,6 @@ g.addNode(1, 1f);               // Add node with a float label
 int edge = g.addEdge(2, 3, 1f); // Node 2 and 3 are automatically created
 g.addEdge(3, 4, 3f);  
 g.addEdge(4, 2);                // This edge has weight 1f
+
+g.setNodeAttribute(n0, 4f);     // Change node attribute
 ```
