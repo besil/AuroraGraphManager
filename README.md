@@ -10,7 +10,11 @@ Most of the performance is given by the fastutil project (http://fastutil.di.uni
 I'm rewriting the code in Java 8, with functional idioms. With the original implementation, we could handle
 graphs with 300 milions of edges in a 60 Gb server.
 
+
 Tutorial
 ==================
+
+In Aurora, nodes and edges has an unique identifier. For nodes, it's supplied by the programmer, while edges are
+automatically indexed.
 
 
