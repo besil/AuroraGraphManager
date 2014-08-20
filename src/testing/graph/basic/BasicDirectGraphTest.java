@@ -111,8 +111,8 @@ public class BasicDirectGraphTest {
 		IntSet outNeighs = g.getOutNeighbours(0);
 		IntSet neighs = g.getNeighbours(0);
 		
-		assertEquals(out, outNeighs);
 		assertEquals(in, inNeighs);
+		assertEquals(out, outNeighs);
 		assertEquals(all, neighs);
 	}
 	
