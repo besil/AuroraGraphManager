@@ -9,6 +9,6 @@ import testing.graph.basic.BasicUndirectGraphTest;
 
 @RunWith(Suite.class)
 @SuiteClasses({ BasicDirectGraphTest.class, BasicUndirectGraphTest.class })
-public class AllTests {
+public class AllGraphTests {
 
 }
