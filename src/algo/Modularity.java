@@ -24,6 +24,7 @@ public class Modularity {
 		
 		double eii=0.0, ai=0.0;
 
+// 		In Java 7
 //		for( int v : graph.getNodeSet() )
 //			ai += graph.wInDegree(v) * graph.wOutDegree(v);
 		
@@ -32,7 +33,8 @@ public class Modularity {
 			.mapToDouble((v) -> graph.wInDegree(v) * graph.wOutDegree(v))
 			.reduce((x, y) -> x + y)
 			.getAsDouble();
-		
+
+// 		In Java 7
 //		for( int[] edge : graph.getEdgeIterable() )
 //			if( nodeToCommunity.get(edge[1]) == nodeToCommunity.get(edge[2]))
 //				eii += graph.getEdgeWeight(edge[0]);
