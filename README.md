@@ -19,7 +19,7 @@ automatically indexed. Nodes can have a float attribute, while edge have a defau
 
 Creating a graph is trivial:
 
-'''java
+```java
 Graph g = new AdlDirectGraph();
 int n0 = g.addNode(0);          // Add a simple node
 g.addNode(1, 1f);               // Add node with a float label
@@ -27,4 +27,4 @@ g.addNode(1, 1f);               // Add node with a float label
 int edge = g.addEdge(2, 3, 1f); // Node 2 and 3 are automatically created
 g.addEdge(3, 4, 3f);  
 g.addEdge(4, 2);                // This edge has weight 1f
-'''
+```
