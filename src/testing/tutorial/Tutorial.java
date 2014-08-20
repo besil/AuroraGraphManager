@@ -1,4 +1,4 @@
-package testing.graph;
+package testing.tutorial;
 
 import static org.junit.Assert.assertEquals;
 import exceptions.EdgeNotFound;
