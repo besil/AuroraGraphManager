@@ -16,7 +16,7 @@ https://sites.google.com/site/silviobernardinello/my-projects
 Quickstart
 ==================
 
-In Aurora, nodes and edges has an unique identifier. For nodes, it's supplied by the programmer, while edges are
+In Aurora, nodes and edges have an unique identifier. For nodes, it's supplied by the programmer, while edges are
 automatically indexed. Nodes can have a float attribute, while edge have a default weight 1f.
 
 Creating a graph is trivial:
