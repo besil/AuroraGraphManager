@@ -13,7 +13,7 @@ graphs with 300 milions of edges in a 60 Gb server.
 If you want to download the .jar, go to 
 https://sites.google.com/site/silviobernardinello/my-projects
 
-Tutorial
+Quickstart
 ==================
 
 In Aurora, nodes and edges has an unique identifier. For nodes, it's supplied by the programmer, while edges are
