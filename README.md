@@ -4,7 +4,7 @@ Aurora Graph Manager
 Aurora Graph Manager is part of the software I developed for my MS thesis in Computer Science.
 The thesis was about community detection in big graphs.
 
-Aurora is an efficient in-memory implementation for directed, undirected, weighted and unweihted graphs, written in Java.
+Aurora is an efficient in-memory implementation for directed, undirected, weighted and unweighted graphs, written in Java.
 Most of the performance is given by the fastutil project (http://fastutil.di.unimi.it).
 
 I'm rewriting the code in Java 8, with functional idioms. With the original implementation, we could handle
@@ -13,10 +13,10 @@ graphs with 300 milions of edges in a 60 Gb server.
 If you want to download the .jar, go to 
 https://sites.google.com/site/silviobernardinello/my-projects
 
-Tutorial
+Quickstart
 ==================
 
-In Aurora, nodes and edges has an unique identifier. For nodes, it's supplied by the programmer, while edges are
+In Aurora, nodes and edges have an unique identifier. For nodes, it's supplied by the programmer, while edges are
 automatically indexed. Nodes can have a float attribute, while edge have a default weight 1f.
 
 Creating a graph is trivial:
