@@ -3,7 +3,6 @@ package algo;
 import graph.IGraph;
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
 
-import java.time.Clock;
 import java.util.OptionalDouble;
 import java.util.logging.Logger;
 
@@ -20,8 +19,8 @@ public class Modularity {
 	}
 
 	public void execute() {
-		Clock clock = Clock.systemDefaultZone();
-		long start = clock.millis();
+//		Clock clock = Clock.systemDefaultZone();
+//		long start = clock.millis();
 		
 		double eii=0.0, ai=0.0;
 
@@ -65,8 +64,8 @@ public class Modularity {
 		}
 
 		modularity = eii - ai;
-		long end = clock.millis();
-		log.info("Modularity completed in "+(end - start)/1000.0+" s");
+//		long end = clock.millis();
+//		log.info("Modularity completed in "+(end - start)/1000.0+" s");
 	}
 
 	public double getValue() {
