@@ -4,6 +4,11 @@ import exceptions.EdgeNotFound;
 import graph.properties.GraphProperties;
 import it.unimi.dsi.fastutil.ints.IntSet;
 
+/**
+ * Immutable Graph Interface
+ * @author silvio
+ *
+ */
 public interface IGraph extends GraphProperties {
 	public boolean isDirected();
 	/**

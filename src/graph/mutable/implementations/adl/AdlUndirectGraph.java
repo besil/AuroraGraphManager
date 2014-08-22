@@ -9,9 +9,17 @@ import it.unimi.dsi.fastutil.ints.IntSet;
 import utils.Utils;
 import exceptions.EdgeNotFound;
 
+/**
+ * An undirect graph class implemented by adjacency list
+ * @author silvio
+ *
+ */
 public class AdlUndirectGraph extends AdlGraph {
 	protected Int2ObjectMap<Int2IntMap> adjacencyMap;
 	
+	/**
+	 * Creates a new undirect graph, implemented by adjacency list
+	 */
 	public AdlUndirectGraph() {
 		super();
 		this.adjacencyMap = new Int2ObjectAVLTreeMap<>();

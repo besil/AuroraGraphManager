@@ -5,6 +5,11 @@ import graph.IGraph;
 import it.unimi.dsi.fastutil.ints.Int2FloatAVLTreeMap;
 import it.unimi.dsi.fastutil.ints.Int2FloatMap;
 
+/**
+ * Main class for Mutable Graphs
+ * @author silvio
+ *
+ */
 public abstract class Graph implements IGraph, MutableGraph {
 	public static final float defaultNodeAttribute 	= -1f;
 	public static final float defaultEdgeWeight 	= 1f;

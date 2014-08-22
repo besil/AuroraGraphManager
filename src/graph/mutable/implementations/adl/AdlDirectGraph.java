@@ -9,10 +9,16 @@ import it.unimi.dsi.fastutil.ints.IntSet;
 import utils.Utils;
 import exceptions.EdgeNotFound;
 
+/**
+ * A directed graph class implemented by adjacency list
+ */
 public class AdlDirectGraph extends AdlGraph {
 	// { n0 : { nId0:eId, nId1:eId2, ... }, n1: { ... }, ... }
 	protected Int2ObjectMap<Int2IntMap> outAdjacencyMap, inAdjacencyMap;
 	
+	/**
+	 * Creates a new direct graph, implemented by adjacency list
+	 */
 	public AdlDirectGraph() {
 		super();
 		this.outAdjacencyMap	= new Int2ObjectAVLTreeMap<>();

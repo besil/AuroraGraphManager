@@ -1,5 +1,9 @@
 package graph.properties;
 
+/**
+ * @author silvio
+ *
+ */
 public interface GraphProperties {
 	/**
 	 * Return the total number of nodes in the graph

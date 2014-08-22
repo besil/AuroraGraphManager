@@ -7,6 +7,11 @@ import graph.mutable.implementations.EdgeIterable;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
 
+/**
+ * Represents an immutable subgraph of the given graph
+ * @author silvio
+ *
+ */
 public class GraphView implements IGraph {
 	protected final IntSet nodes, edges;
 	protected final IGraph g;
