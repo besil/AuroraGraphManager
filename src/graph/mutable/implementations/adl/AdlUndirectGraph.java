@@ -1,11 +1,10 @@
 package graph.mutable.implementations.adl;
 
-import it.unimi.dsi.fastutil.ints.Int2IntAVLTreeMap;
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
-import it.unimi.dsi.fastutil.ints.Int2ObjectAVLTreeMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
+import utils.MapFactory;
 import utils.Utils;
 import exceptions.EdgeNotFound;
 
@@ -22,7 +21,7 @@ public class AdlUndirectGraph extends AdlGraph {
 	 */
 	public AdlUndirectGraph() {
 		super();
-		this.adjacencyMap = new Int2ObjectAVLTreeMap<>();
+		this.adjacencyMap = MapFactory.int2ObjectMap();
 	}
 	
 	@Override
@@ -90,7 +89,7 @@ public class AdlUndirectGraph extends AdlGraph {
 
 	@Override
 	public int addNode(int n) {
-		Int2IntMap m = new Int2IntAVLTreeMap();
+		Int2IntMap m = MapFactory.int2IntMap();
 		m.defaultReturnValue(defaultIntReturnValue);
 		adjacencyMap.put(n, m);
 		return n;

@@ -2,8 +2,8 @@ package graph.mutable;
 
 import exceptions.NodeNotFound;
 import graph.IGraph;
-import it.unimi.dsi.fastutil.ints.Int2FloatAVLTreeMap;
 import it.unimi.dsi.fastutil.ints.Int2FloatMap;
+import utils.MapFactory;
 
 /**
  * Main class for Mutable Graphs
@@ -16,10 +16,10 @@ public abstract class Graph implements IGraph, MutableGraph {
 	private Int2FloatMap nodeAttributes, edgeWeights;
 	
 	public Graph() {
-		this.nodeAttributes	 = new Int2FloatAVLTreeMap();
+		this.nodeAttributes	 = MapFactory.int2FloatMap();
 		this.nodeAttributes.defaultReturnValue(defaultNodeAttribute);
 		
-		this.edgeWeights	 = new Int2FloatAVLTreeMap();
+		this.edgeWeights	 = MapFactory.int2FloatMap();
 		this.edgeWeights.defaultReturnValue(defaultEdgeWeight);
 	}
 

@@ -1,12 +1,12 @@
 package graph.mutable.implementations.adl;
 
-import utils.Utils;
 import exceptions.EdgeNotFound;
 import graph.mutable.Graph;
 import graph.mutable.implementations.EdgeIterable;
-import it.unimi.dsi.fastutil.ints.Int2LongAVLTreeMap;
 import it.unimi.dsi.fastutil.ints.Int2LongMap;
 import it.unimi.dsi.fastutil.ints.IntSet;
+import utils.MapFactory;
+import utils.Utils;
 
 public abstract class AdlGraph extends Graph {
 	protected Int2LongMap edgeToNodesMap;
@@ -14,7 +14,7 @@ public abstract class AdlGraph extends Graph {
 	protected final long edgeToNodeDefault		= -1L;
 	
 	public AdlGraph() {
-		this.edgeToNodesMap = new Int2LongAVLTreeMap();
+		this.edgeToNodesMap = MapFactory.int2LongMap();
 		this.edgeToNodesMap.defaultReturnValue(edgeToNodeDefault);
 	}
 	

@@ -1,11 +1,10 @@
 package graph.mutable.implementations.adl;
 
-import it.unimi.dsi.fastutil.ints.Int2IntAVLTreeMap;
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
-import it.unimi.dsi.fastutil.ints.Int2ObjectAVLTreeMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
+import utils.MapFactory;
 import utils.Utils;
 import exceptions.EdgeNotFound;
 
@@ -21,8 +20,8 @@ public class AdlDirectGraph extends AdlGraph {
 	 */
 	public AdlDirectGraph() {
 		super();
-		this.outAdjacencyMap	= new Int2ObjectAVLTreeMap<>();
-		this.inAdjacencyMap 	= new Int2ObjectAVLTreeMap<>();
+		this.outAdjacencyMap	= MapFactory.int2ObjectMap();
+		this.inAdjacencyMap 	= MapFactory.int2ObjectMap();
 	}
 	
 	@Override
@@ -52,11 +51,11 @@ public class AdlDirectGraph extends AdlGraph {
 
 	@Override
 	public int addNode(int n) {
-		Int2IntMap mout = new Int2IntAVLTreeMap();
+		Int2IntMap mout = MapFactory.int2IntMap();
 		mout.defaultReturnValue(defaultIntReturnValue);
 		outAdjacencyMap.put(n, mout);
 		
-		Int2IntMap min = new Int2IntAVLTreeMap();
+		Int2IntMap min = MapFactory.int2IntMap();
 		min.defaultReturnValue(defaultIntReturnValue);
 		inAdjacencyMap.put(n, min);
 		
