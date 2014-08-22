@@ -22,6 +22,10 @@ import java.util.logging.Logger;
 public class GraphReader {
 	protected static Logger log = Logger.getLogger("GraphReader");
 
+	public static IGraph readGraph(String fname, String separator, boolean directed, boolean weighted) {
+		return readGraph(new File(fname), separator, directed, weighted);
+	}
+	
 	public static IGraph readGraph( File fname, String separator, boolean directed, boolean weighted ) {
 		log.info("Reading from "+fname);
 		Graph g;

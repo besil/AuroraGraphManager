@@ -4,6 +4,7 @@ import graph.IGraph;
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
 
 import java.time.Clock;
+import java.util.OptionalDouble;
 import java.util.logging.Logger;
 
 public class Modularity {
@@ -39,15 +40,21 @@ public class Modularity {
 //			if( nodeToCommunity.get(edge[1]) == nodeToCommunity.get(edge[2]))
 //				eii += graph.getEdgeWeight(edge[0]);
 		
-		eii = graph.getEdgeSet()
-			.parallelStream()
+		OptionalDouble res = graph.getEdgeSet()
+			.stream()
 			.filter((e) -> {
 				int[] ends = graph.getEndpoints(e);
 				return nodeToCommunity.get(ends[0]) == nodeToCommunity.get(ends[1]);
 			})
-			.mapToDouble(e -> graph.getEdgeWeight(e))
-			.reduce((w0, w1) -> w0 + w1)
-			.getAsDouble();
+			.mapToDouble( (e) -> {
+				return graph.getEdgeWeight(e);
+			})
+			.reduce( (w0, w1) -> {
+				return w0 + w1;
+			});
+		
+		if(res.isPresent())
+			eii = res.getAsDouble();
 
 		if(graph.isDirected()) {
 			ai	= ai / Math.pow(graph.getEdgeCount(), 2);
