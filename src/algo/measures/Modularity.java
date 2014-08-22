@@ -1,4 +1,4 @@
-package algo;
+package algo.measures;
 
 import graph.IGraph;
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
