@@ -14,7 +14,7 @@ public class Utils {
 	
 	/**
 	 * Returns an unique key of a and b.
-	 * Returns AB if a < b, BA otherwise
+	 * Returns AB if a is less then b, BA otherwise
 	 * @param a
 	 * @param b
 	 * @return
