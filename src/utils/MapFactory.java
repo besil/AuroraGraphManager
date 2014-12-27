@@ -21,7 +21,9 @@ public class MapFactory {
 	}
 	
 	public static Int2ObjectMap<Int2IntMap> int2ObjectMap() {
-		return new Int2ObjectOpenHashMap<>();
+		Int2ObjectMap<Int2IntMap> res = new Int2ObjectOpenHashMap<>();
+		res.defaultReturnValue(new Int2IntOpenHashMap());
+		return res;
 //		return new Int2ObjectAVLTreeMap<>();
 	}
 	
