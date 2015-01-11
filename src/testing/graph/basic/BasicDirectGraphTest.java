@@ -30,6 +30,15 @@ public class BasicDirectGraphTest {
 	}
 	
 	@Test
+	public void testWeights() {
+		Graph g = new AdlDirectGraph();
+		int e0 = g.addEdge(0, 1, 0.5f);
+		int e1 = g.addEdge(0, 2, 0.3f);
+		assertEquals( g.getEdgeWeight(e0), 0.5f, 0.0);
+		assertEquals( g.getEdgeWeight(e1), 0.3f, 0.0);
+	}
+	
+	@Test
 	public void testDirect() {
 		assertEquals(true, g.isDirected());
 	}
