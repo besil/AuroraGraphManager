@@ -1,5 +1,10 @@
 package utils;
 
+/**
+ * 
+ * @author Christian Quadri
+ *
+ */
 public class BitTypeConversion {
 
 	public static int shorts2int(short arg1, short arg2){
