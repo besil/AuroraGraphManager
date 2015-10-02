@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Auroragraphmanager by besil</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Auroragraphmanager</h1>
+        <h2>Efficient graph data structures</h2>
+        <a href="https://github.com/besil/AuroraGraphManager" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="aurora-graph-manager" class="anchor" href="#aurora-graph-manager" aria-hidden="true"><span class="octicon octicon-link"></span></a>Aurora Graph Manager</h1>
+
+<p>Aurora Graph Manager is part of the software I developed for my MS thesis in Computer Science.
+The thesis was about community detection in big graphs.</p>
+
+<p>Aurora is an efficient in-memory implementation for directed, undirected, weighted and unweighted graphs, written in Java.
+Most of the performance is given by the fastutil project (<a href="http://fastutil.di.unimi.it">http://fastutil.di.unimi.it</a>).</p>
+
+<p>I'm rewriting the code in Java 8, with functional idioms. With the original implementation, we could handle
+graphs with 300 milions of edges in a 60 Gb server.</p>
+
+<p>If you want to download the .jar, go to 
+<a href="https://sites.google.com/site/silviobernardinello/my-projects">https://sites.google.com/site/silviobernardinello/my-projects</a></p>
+
+<h1>
+<a id="quickstart" class="anchor" href="#quickstart" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quickstart</h1>
+
+<p>In Aurora, nodes and edges have an unique identifier. For nodes, it's supplied by the programmer, while edges are
+automatically indexed. Nodes can have a float attribute, while edge have a default weight 1f.</p>
+
+<p>Creating a graph is trivial:</p>
+
+<div class="highlight highlight-source-java"><pre><span class="pl-c">/**</span>
+<span class="pl-c"> * Populate the graph</span>
+<span class="pl-c"> */</span>
+<span class="pl-smi">Graph</span> g <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">AdlDirectGraph</span>(); <span class="pl-c">// or AdlUndirectGraph</span>
+<span class="pl-k">int</span> n0 <span class="pl-k">=</span> g<span class="pl-k">.</span>addNode(<span class="pl-c1">0</span>);          <span class="pl-c">// Add a simple node</span>
+g<span class="pl-k">.</span>addNode(<span class="pl-c1">1</span>, <span class="pl-c1">1f</span>);               <span class="pl-c">// Add node with a float label</span>
+
+<span class="pl-c">// check if there are only 2 nodes in the graph</span>
+assertEquals(<span class="pl-c1">2</span>, g<span class="pl-k">.</span>getNodeCount());
+
+<span class="pl-k">int</span> edgeId <span class="pl-k">=</span> g<span class="pl-k">.</span>addEdge(<span class="pl-c1">2</span>, <span class="pl-c1">3</span>, <span class="pl-c1">1f</span>); <span class="pl-c">// Node 2 and 3 are automatically created</span>
+g<span class="pl-k">.</span>addEdge(<span class="pl-c1">3</span>, <span class="pl-c1">4</span>, <span class="pl-c1">3f</span>);  
+g<span class="pl-k">.</span>addEdge(<span class="pl-c1">4</span>, <span class="pl-c1">2</span>);                <span class="pl-c">// This edge has weight 1f</span>
+
+assertEquals(<span class="pl-c1">3</span>, g<span class="pl-k">.</span>getEdgeCount());
+
+<span class="pl-c">// You can change node attribute for an existing node</span>
+g<span class="pl-k">.</span>setNodeAttribute(n0, <span class="pl-c1">4f</span>);
+
+<span class="pl-c">// Create and delete nodes</span>
+g<span class="pl-k">.</span>addNode(<span class="pl-c1">24</span>);
+<span class="pl-k">if</span>( g<span class="pl-k">.</span>contains(<span class="pl-c1">24</span>) )
+    g<span class="pl-k">.</span>removeNode(<span class="pl-c1">24</span>);
+assertEquals(<span class="pl-c1">false</span>, g<span class="pl-k">.</span>contains(<span class="pl-c1">24</span>));
+
+<span class="pl-k">try</span> {
+    g<span class="pl-k">.</span>getNodeAttribute(<span class="pl-c1">23</span>);       <span class="pl-c">// You can't access to non existing nodes</span>
+    assertEquals(<span class="pl-c1">true</span>, <span class="pl-c1">false</span>);
+} <span class="pl-k">catch</span>( <span class="pl-smi">NodeNotFound</span> ex ) {
+    <span class="pl-c">// this is a RuntimeException</span>
+    assertEquals(<span class="pl-c1">true</span>, <span class="pl-c1">true</span>);
+}
+
+<span class="pl-c">/**</span>
+<span class="pl-c"> * Edge Operations</span>
+<span class="pl-c"> */</span>
+g <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">AdlDirectGraph</span>();
+g<span class="pl-k">.</span>addEdge(<span class="pl-c1">0</span>, <span class="pl-c1">1</span>);
+g<span class="pl-k">.</span>addEdge(<span class="pl-c1">0</span>, <span class="pl-c1">2</span>);
+<span class="pl-c">// check connections</span>
+assertEquals(<span class="pl-c1">true</span>, g<span class="pl-k">.</span>areConnected(<span class="pl-c1">0</span>, <span class="pl-c1">1</span>));
+
+edgeId <span class="pl-k">=</span> g<span class="pl-k">.</span>getEdgeBetween(<span class="pl-c1">0</span>, <span class="pl-c1">1</span>);    <span class="pl-c">// get the id between 0 and 1</span>
+<span class="pl-smi">IntSet</span> outEdges <span class="pl-k">=</span> g<span class="pl-k">.</span>getOutEdges(<span class="pl-c1">0</span>); <span class="pl-c">// also getInEdge or getEdges()</span>
+assertEquals( <span class="pl-c1">true</span>, outEdges<span class="pl-k">.</span>contains(edgeId) );
+
+<span class="pl-k">try</span> {
+    g<span class="pl-k">.</span>getEdgeBetween(<span class="pl-c1">0</span>, <span class="pl-c1">23</span>);
+    assertEquals(<span class="pl-c1">true</span>, <span class="pl-c1">false</span>);
+} <span class="pl-k">catch</span>( <span class="pl-smi">EdgeNotFound</span> ex ) {
+    assertEquals(<span class="pl-c1">true</span>, <span class="pl-c1">true</span>);
+}
+
+<span class="pl-k">float</span> w <span class="pl-k">=</span> g<span class="pl-k">.</span>getEdgeWeight(edgeId);
+assertEquals( <span class="pl-c1">1f</span>, w, <span class="pl-c1">0.0</span> );         <span class="pl-c">// default weight is 1f</span>
+<span class="pl-k">float</span> nonExistingEdge <span class="pl-k">=</span> g<span class="pl-k">.</span>getEdgeWeight(<span class="pl-k">-</span><span class="pl-c1">23</span>);
+<span class="pl-c">// Beware! this is true! If you ask the weight of an existing</span>
+<span class="pl-c">// edge, you get it. Of an non existing edge, you get 1f. </span>
+<span class="pl-c">// This is made for performance.</span>
+assertEquals( <span class="pl-c1">1f</span>, nonExistingEdge, <span class="pl-c1">0.0</span> );
+
+<span class="pl-c">/**</span>
+<span class="pl-c"> * Neighborhood</span>
+<span class="pl-c"> */</span>
+g <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">AdlUndirectGraph</span>();
+g<span class="pl-k">.</span>addEdge(<span class="pl-c1">0</span>, <span class="pl-c1">1</span>);
+g<span class="pl-k">.</span>addEdge(<span class="pl-c1">0</span>, <span class="pl-c1">2</span>);
+
+<span class="pl-smi">IntSet</span> neighs <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">IntArraySet</span>(<span class="pl-k">new</span> <span class="pl-smi">int</span>[]{<span class="pl-c1">1</span>, <span class="pl-c1">2</span>});
+assertEquals(neighs, g<span class="pl-k">.</span>getNeighbours(<span class="pl-c1">0</span>));
+<span class="pl-c">// Also getOutNeighbours or getInNeighbours. Make sense only for directed graph</span>
+
+<span class="pl-c">/**</span>
+<span class="pl-c"> * Graph View</span>
+<span class="pl-c"> */</span>
+g<span class="pl-k">.</span>addEdge(<span class="pl-c1">2</span>, <span class="pl-c1">3</span>);
+g<span class="pl-k">.</span>addEdge(<span class="pl-c1">2</span>, <span class="pl-c1">4</span>);
+g<span class="pl-k">.</span>addEdge(<span class="pl-c1">3</span>, <span class="pl-c1">4</span>);
+<span class="pl-smi">IntSet</span> subgraph <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">IntArraySet</span>(<span class="pl-k">new</span> <span class="pl-smi">int</span>[]{ <span class="pl-c1">2</span>,<span class="pl-c1">3</span>,<span class="pl-c1">4</span> } );
+<span class="pl-c">// Graph view gives you a view on some vertices</span>
+<span class="pl-smi">IGraph</span> ig <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">GraphView</span>(g, subgraph); <span class="pl-c">// IGraph is the immutable interface for Graph</span>
+
+assertEquals(<span class="pl-c1">false</span>, ig<span class="pl-k">.</span>contains(<span class="pl-c1">0</span>));
+assertEquals(<span class="pl-c1">true</span>, ig<span class="pl-k">.</span>contains(<span class="pl-c1">2</span>));
+
+<span class="pl-c">/**</span>
+<span class="pl-c"> * Degree</span>
+<span class="pl-c"> */</span>
+<span class="pl-c">// You can get degree information for nodes</span>
+g <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">AdlDirectGraph</span>();
+g<span class="pl-k">.</span>addEdge(<span class="pl-c1">0</span>, <span class="pl-c1">1</span>, <span class="pl-c1">2f</span>);
+g<span class="pl-k">.</span>addEdge(<span class="pl-c1">0</span>, <span class="pl-c1">2</span>);
+g<span class="pl-k">.</span>addEdge(<span class="pl-c1">2</span>, <span class="pl-c1">0</span>);
+
+assertEquals(<span class="pl-c1">2</span>, g<span class="pl-k">.</span>outDegree(<span class="pl-c1">0</span>));
+assertEquals(<span class="pl-c1">1</span>, g<span class="pl-k">.</span>inDegree(<span class="pl-c1">0</span>));
+assertEquals(<span class="pl-c1">3</span>, g<span class="pl-k">.</span>degree(<span class="pl-c1">0</span>));
+
+<span class="pl-c">// Also wOutDegree(0) for weighted degree</span>
+assertEquals(<span class="pl-c1">3f</span>, g<span class="pl-k">.</span>wOutDegree(<span class="pl-c1">0</span>), <span class="pl-c1">0.0</span>);
+
+<span class="pl-c">/**</span>
+<span class="pl-c"> * Finally, the edge iterator feature</span>
+<span class="pl-c"> */</span>
+<span class="pl-c">// Iterate over triplets {edgeId, src, dst}</span>
+g <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">AdlDirectGraph</span>();
+g<span class="pl-k">.</span>addEdge(<span class="pl-c1">0</span>, <span class="pl-c1">1</span>);
+g<span class="pl-k">.</span>addEdge(<span class="pl-c1">0</span>, <span class="pl-c1">2</span>);
+g<span class="pl-k">.</span>addEdge(<span class="pl-c1">2</span>, <span class="pl-c1">3</span>);
+<span class="pl-k">for</span>(<span class="pl-k">int</span>[] t <span class="pl-k">:</span> g<span class="pl-k">.</span>getEdgeIterable()) {
+    <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(t[<span class="pl-c1">0</span>]<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">"</span>: <span class="pl-pds">"</span></span><span class="pl-k">+</span>t[<span class="pl-c1">1</span>]<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">"</span> -&gt; <span class="pl-pds">"</span></span><span class="pl-k">+</span>t[<span class="pl-c1">2</span>]);
+    <span class="pl-c">/*</span>
+<span class="pl-c">     * Prints</span>
+<span class="pl-c">     * 0: 0 -&gt; 1</span>
+<span class="pl-c">     * 1: 0 -&gt; 2</span>
+<span class="pl-c">     * 2: 2 -&gt; 3</span>
+<span class="pl-c">     */</span>
+}</pre></div>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/besil/AuroraGraphManager/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/besil/AuroraGraphManager/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/besil/AuroraGraphManager"></a> is maintained by <a href="https://github.com/besil">besil</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-68394103-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
